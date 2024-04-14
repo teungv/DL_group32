@@ -1,0 +1,24 @@
+noise_level: 0.1
+noise_mode: dropped
+hydra:
+  run:
+    dir: /home/teunv/Documents/DL/Project/${model.name}/${noise_mode}/${noise_level}/${now:%Y-%m-%d_%H%M%S} # keep the same
+
+
+gt_path: /home/teunv/Documents/DL/Project/gt_tracks/benchmark_data/${noise_mode}/${noise_level}/gt # keep the same
+running_locally: False
+
+
+weights_path: /home/teunv/Documents/DL/Project/pretrained_weights/weights_finetuned_ec.ckpt # keep the same
+track_name: shitomasi_custom
+representation: time_surfaces_v2_5
+patch_size: 31
+visualize: True
+dt_track_vis: 0.2
+
+# Composing nested config with default
+defaults:
+  - model: correlation3_unscaled
+# Pytorch lightning trainer's argument
+trainer:
+  gpus: [0]
